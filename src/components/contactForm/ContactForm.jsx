@@ -98,6 +98,14 @@ export default function ContactForm() {
 
   return (
     <div>
+      <div>
+        <br />
+      {isSent && (
+        <div className="success-message">
+          <p>Votre message a été envoyé avec succès !</p>
+        </div>
+      )}
+      </div>
       {!isSent && (
         <form onSubmit={handleSubmit}>
           <div className={classes.formInput}>
@@ -154,13 +162,6 @@ export default function ContactForm() {
             </button>
           </div>
         </form>
-      )}
-      {isSent && (
-        <div className="success-message">
-          <p>SUCCÈS !</p>
-          <p>Votre message a été envoyé avec succès !</p>
-          <p>Vous pouvez quitter cette page en toute sécurité.</p>
-        </div>
       )}
     </div>
   );
