@@ -1,0 +1,26 @@
+.carte {
+  padding-bottom: 20px;
+}
+
+.textstrong {
+  font-weight: 500;
+}
+
+.info {
+  display: flex;
+  gap: 3px;
+  font-weight: 500;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding-top: 10px;
+}
+
+.info a {
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+}
