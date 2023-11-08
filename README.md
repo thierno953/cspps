@@ -162,96 +162,9 @@ npm i styled-components
 npm i -D jest-styled-components @types/styled-components
 ```
 
-Create a folder called styles in `src`. Add the files `render-theme.jsx`,
-`global-styles.jsx`, `theme.js` and a `styled-theme-provider.jsx`.
 
-The file `theme.js` is where you should add the theme for your application, for
-example (the most simple and ugly theme you would ever see):
 
-```javascript
-export const theme = {
-  colors: {
-    primary: 'red',
-    secondary: 'blue',
-  },
-};
-```
 
-The `global-styles.jsx` is where we add the global theme for our application.
-Here we can add fonts, provide css reset and more.
 
-```javascript
-import { createGlobalStyle } from 'styled-components';
 
-export const GlobalStyles = createGlobalStyle`
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
 
-  html {
-    font-size: 62.5%;
-  }
-
-  body {
-    font-size: 1.6rem;
-  }
-`;
-```
-
-The `styled-theme-provider.jsx` makes things easier by providing the theme to
-other components.
-
-```javascript
-import { ThemeProvider } from 'styled-components';
-import Proptypes from 'prop-types';
-import { GlobalStyles } from './global-styles';
-import { theme } from './theme';
-
-export const StyledThemeProvider = ({ children }) => {
-  return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      {children}
-    </ThemeProvider>
-  );
-};
-
-StyledThemeProvider.propTypes = {
-  children: Proptypes.node.isRequired,
-};
-```
-
-The file `render-theme.jsx` is going to be used for tests. It will provide the
-`StyledThemeProvider` so we can use styled-components in our tests.
-
-This is the most basic version of the `renderTheme` function.
-
-```javascript
-import { render } from '@testing-library/react';
-import { StyledThemeProvider } from './styled-theme-provider';
-
-export const renderTheme = (children) => {
-  return render(<StyledThemeProvider>{children}</StyledThemeProvider>);
-};
-```
-
-And on the `main.jsx`, you may want to wrap everything using
-`StyledThemeProvider`.
-
-```javascript
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { StyledThemeProvider } from './styles/styled-theme-provider';
-import App from './App';
-import './index.css';
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <StyledThemeProvider>
-      <App />
-    </StyledThemeProvider>
-  </React.StrictMode>,
-);
-```
